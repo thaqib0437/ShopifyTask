@@ -1,0 +1,12 @@
+version: '3'
+services:
+  wat-cal-app:
+    build: 
+      context: .
+      args:
+        - NODE_ENV=dev
+    volumes:
+      - ./:/app
+    environment:
+      - NODE_ENV=dev
+    command: npm run dev

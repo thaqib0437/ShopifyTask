@@ -18,5 +18,10 @@
     <br> 
     <br>
     <%- include('add') %>
+    <%- include('addw') %>
+
+<% if (locals.message) { %>
+  <p><%= locals.message %></p>
+<% } %>
 </body>
 </html>

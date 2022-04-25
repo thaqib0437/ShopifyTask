@@ -12,10 +12,21 @@
         <label for="price"> Price: </label>
         <input type="number" id="quantity" name="price" min="0" required>
         <br>
+        <label for="warehouse">Choose a warehouse:</label>
+        <% if(warehouses.length===0) {%>
+          <p>No Warehouse Added</p> 
+          <% } %>
+        <% if(warehouses.length > 0) { %>
+          <select name="warehouses">
+            <% warehouses.forEach(w => {%>
+              <option value="<%=w.location%> "> <%=w.location%> (Capacity: <%=w.capacity%>
+             </option> 
+             <% }) %> 
+          </select> 
+          <% } %> 
+          <button>Add More warehouses</button>
+        <br>
         <input type="submit" value="Add Item">
     </form>
 
     <% } %>
-<% if (locals.message) { %>
-  <p><%= locals.message %></p>
-<% } %>

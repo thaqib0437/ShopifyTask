@@ -12,16 +12,21 @@
     </h2>
     <a href="/addItem"> Add New Items </a>
     <br>
-    <a href="/view"> View and Manage Items </a>
+    <a href="/manage"> View and Manage Items </a>
     <br>
-    <a href="/addWarehouse"> Add Warehouse </a>
+    <a href="/DeleteItem"> Deletion History </a>
     <br> 
     <br>
-    <%- include('add') %>
-    <%- include('addw') %>
+    <% if (locals.add) { %>
+        <%- include('add') %>
+    <% } %>
+
+    <% if (locals.manage) { %>
+        <%- include('manage') %>
+    <% } %> 
 
 <% if (locals.message) { %>
-  <p><%= locals.message %></p>
+  <strong><%= locals.message %></strong>
 <% } %>
 </body>
 </html>

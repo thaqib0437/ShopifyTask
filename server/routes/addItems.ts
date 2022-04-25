@@ -1,21 +1,19 @@
 import { Router } from 'express';
-import { Item, Warehouse } from '../models/itemModel';
+import { Item } from '../models/itemModel';
 
 const addItem = Router();
 
 addItem.get('/', (req, res) => {
-    Warehouse.find({})
-    .then(warehouses => {
-        res.render("index", {add: true, warehouses: warehouses})
-    })
-    .catch(e => res.status(401).send("Error Fetching Warehouses"))
+    res.render("index", {add: true})
 })
 
 
 addItem.post('/',  (req, res) => {    
     const body = req.body
     Item.create(body)
-    .then(i => console.log("created"))
+    .then(item => {
+        res.status(201).render("index", {add: false, message: `Added Item ${item.name}`})
+    })
     .catch(e => {
         res.status(500).json(e.message)
     })

@@ -5,7 +5,7 @@ import morgan from "morgan";
 import path from "path";
 import addItem from "./routes/addItems";
 import DB_URI from "./conf/DB";
-import addWarehouse from "./routes/addWarehouse";
+import { Item } from "./models/itemModel";
 
 
 const app = express();
@@ -16,11 +16,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+
 app.get("/", (req, res) => {
     res.render("index")
 })
 
-app.use("/addWarehouse", addWarehouse)
+
 app.use("/addItem", addItem)
 
 

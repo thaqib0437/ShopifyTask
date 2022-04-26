@@ -29,10 +29,5 @@ app.use("/undoDelete", undoDelete)
 
 
 connect(DB_URI, () => {
-    console.log("Connected to DB")
-    app.listen(PORT, () => {
-        console.log("Server started")
-        console.log(`Listening on: http://localhost:${PORT}/`)
-});
-
+    app.listen(PORT);
 })

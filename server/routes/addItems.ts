@@ -8,7 +8,7 @@ addItem.get('/', (req, res) => {
 })
 
 
-addItem.post('/',  (req, res) => {    
+addItem.post('/',  (req, res) => {
     const body = req.body
     Item.create(body)
     .then(item => {
@@ -20,4 +20,4 @@ addItem.post('/',  (req, res) => {
 })
 
 
-export default addItem; 
+export default addItem;

@@ -6,7 +6,7 @@ const manage = Router()
 manage.get("/", (req, res) => {
     Item.find({}).then(
         items => {
-            res.render("index", {manage: true, items: items})
+            res.render("index", {manage: true, items})
         }
     )
     .catch(
@@ -29,7 +29,7 @@ manage.get("/:code", (req, res) => {
 manage.post("/:code/edit", (req, res) => {
     const body = req.body
     const code = req.params.code
-    Item.findOneAndUpdate({code: code}, body)
+    Item.findOneAndUpdate({code}, body)
     .then(
         v => {
             if (v) {
@@ -48,18 +48,29 @@ manage.post("/:code/edit", (req, res) => {
 manage.post("/:code/delete", (req, res) => {
     const code = req.params.code
     const {comment} = req.body
-    Item.findOneAndDelete({code: code})
+    Item.findOneAndDelete({code})
     .then(item => {
         if(item){
-            deleteRecord.create({code: item.code, comment: comment, itemData: item })
-                .then(_ => {
-                    res.redirect("/manage")
-                })
+            deleteRecord.find({code: item.code})
+            .then(dr => {
+                if(dr.length > 0){
+                    res.render("index", {message: `Deleted items with code: ${code} already exist try deleting them first`})
+                }
+                else{
+                    deleteRecord.create({ code: item.code, comment, itemData: item })
+                        .then(_ => {
+                            res.redirect("/manage")
+                        })
+                        .catch(_ => res.status(404).json("Failed to delete item"))
+                }
+            })
+            .catch(_ => res.status(404).json("Failed to delete item"))
         }
         else{
             res.status(404).json("failed to delete item")
         }
     })
+    .catch(_ => res.status(404).json("failed to delete item"))
 })
 
 export default manage;

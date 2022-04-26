@@ -1,0 +1,38 @@
+<table>
+    <thead>
+        <th>
+            Name
+        </th>
+        <th>
+            Code
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th></th>
+    </thead>
+    <tbody>
+    <% items.forEach(item => { %>
+        <tr>
+            <td>
+                <%=item.name%>
+            </td>
+            <td>
+                <%=item.code%>
+            </td>
+            <td>
+                <%=item.quantity%>
+            </td>
+            <td>
+                <%=item.price%>
+            </td>
+            <td>
+                <a href="/manage/<%=item.code%>">Edit</a>
+            </td>
+        </tr>
+    <%})%>
+    </tbody>
+</table>

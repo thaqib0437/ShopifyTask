@@ -2,10 +2,11 @@ import express from "express";
 import {connect} from "mongoose"
 import bodyParser from "body-parser";
 import morgan from "morgan";
-import path from "path";
-import addItem from "./routes/addItems";
 import DB_URI from "./conf/DB";
-import { Item } from "./models/itemModel";
+
+import manage from "./routes/manage";
+import addItem from "./routes/addItems";
+import undoDelete from "./routes/undoDelete";
 
 
 const app = express();
@@ -23,6 +24,8 @@ app.get("/", (req, res) => {
 
 
 app.use("/addItem", addItem)
+app.use("/manage", manage)
+app.use("/undoDelete", undoDelete)
 
 
 connect(DB_URI, () => {

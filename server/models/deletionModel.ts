@@ -1,17 +1,22 @@
-import {Schema, model} from "mongoose"
+import {Schema, model} from "mongoose";
 import { IItem, ItemSchema } from "./itemModel";
 
+
 interface IDeleteRecord{
+    code:  string
     comment: string
-    itemData: IItem
+    itemData: IItem,
+    expireAt: Date
 }
 
 const deleteRecordSchema = new Schema<IDeleteRecord>(
     {
+        code: {type: String, unique: true, required: true},
         comment: {type: String},
-        itemData: ItemSchema
+        itemData: ItemSchema,
+        expireAt: {type: Date, default: Date.now, index: {expires: 60*5}} // expire after 5 minutes
     },
-    {timestamps: true, expires: 7*24*60*60 } // Expire every 7 days
+    {timestamps: true}
 )
 
 const deleteRecord = model<IDeleteRecord>("DeleteRecord", deleteRecordSchema)

@@ -14,7 +14,7 @@
     <br>
     <a href="/manage"> View and Manage Items </a>
     <br>
-    <a href="/DeleteItem"> Deletion History </a>
+    <a href="/undoDelete"> Deletion History </a>
     <br> 
     <br>
     <% if (locals.add) { %>
@@ -24,6 +24,12 @@
     <% if (locals.manage) { %>
         <%- include('manage') %>
     <% } %> 
+    <% if (locals.update) { %>
+        <%- include('update') %>
+    <% } %>
+    <% if (locals.delete) { %>
+        <%- include('undodelete') %>
+    <% } %>
 
 <% if (locals.message) { %>
   <strong><%= locals.message %></strong>

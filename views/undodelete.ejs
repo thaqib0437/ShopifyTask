@@ -1,0 +1,39 @@
+<table>
+    <thead>
+        <th>
+            Code
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Deleted At
+        </th>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+        <% deleteRecords.forEach(dr=> {%>
+            <tr>
+                <td>
+                    <%=dr.itemData.code%>
+                </td>
+                <td>
+                    <%=dr.itemData.name%>
+                </td>
+                <td>
+                    <%=dr.createdAt%>
+                </td>
+                <td>
+                    <% if(dr.comment !=='' ) {%>
+                        <em>Comment:</em>
+                        <%=dr.comment%>
+                            <%}%>
+                </td>
+                <td>
+                    <a href="/undoDelete/<%=dr.code%>">Undo Delete</a>
+                </td>
+            </tr>
+        <%})%>
+    </tbody>
+</table>

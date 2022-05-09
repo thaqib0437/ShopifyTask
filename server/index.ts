@@ -29,5 +29,7 @@ app.use("/undoDelete", undoDelete)
 
 
 connect(DB_URI, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Server Started on http://localhost:${PORT}/`)
     app.listen(PORT);
 })

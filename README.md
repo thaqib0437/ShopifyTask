@@ -12,4 +12,5 @@ Server Started on http://localhost:{PORT}/
 ```
 4. The app will start serving on [localhost](http://localhost:3001/)
 
-## Running on [replit](https://replit.com/)
+## Running on [replit](https://replit.com/@thaqib0437/shopifyTask)
+* Go to the link: https://replit.com/@thaqib0437/shopifyTask and start using the app.
